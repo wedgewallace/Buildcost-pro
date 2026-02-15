@@ -1,54 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// Data constants for different aspects of the BuildCost Pro app
-const REGIONS = ['Northeast', 'Southeast', 'Midwest', 'West'];
+// Constants
+const REGIONS = ['North', 'South', 'East', 'West'];
 const FOUNDATION_TYPES = ['Slab', 'Crawl Space', 'Basement'];
 const FRAMING = ['Wood', 'Steel', 'Concrete'];
-const ROOFING = ['Asphalt Shingles', 'Metal', 'Tile'];
-const SIDING = ['Vinyl', 'Wood', 'Brick'];
-const WINDOWS = ['Double Pane', 'Triple Pane'];
-const FLOORING = ['Hardwood', 'Carpet', 'Tile'];
-const COUNTERTOPS = ['Granite', 'Quartz', 'Laminate'];
-const CABINETS = ['Custom', 'Stock', 'Semi-Custom'];
-const APPLIANCES = ['Stainless Steel', 'Black', 'White'];
-const PAINT = ['Interior', 'Exterior'];
-const MOLDING = ['Baseboard', 'Crown Molding'];
-const FIXTURES = ['Standard', 'Upgraded'];
-const ELECTRICAL = ['Standard', 'Upgraded'];
-const HVAC = ['Central', 'Electric', 'Gas'];
-const DRIVEWAY = ['Concrete', 'Asphalt', 'Gravel'];
-const WELL_SEPTIC_OPTIONS = ['Well', 'Septic', 'Public Water'];
+const ROOFING = ['Asphalt Shingle', 'Metal', 'Tile', 'Slate'];
+const EXTERIOR_SIDING = ['Vinyl', 'Wood', 'Brick', 'Fiber Cement'];
+const WINDOWS = ['Single Pane', 'Double Pane', 'Triple Pane'];
+const FLOORING_OPTIONS = ['Carpet', 'Hardwood', 'Tile', 'Laminate'];
+const COUNTERTOP_OPTIONS = ['Granite', 'Quartz', 'Marble', 'Laminate'];
+const CABINET_OPTIONS = ['Stock', 'Semi-Custom', 'Custom'];
+const APPLIANCE_PACKAGES = ['Basic', 'Standard', 'Premium'];
+const PAINT_OPTIONS = ['Flat', 'Eggshell', 'Satin', 'Semi-Gloss'];
+const MOLDING_OPTIONS = ['Standard', 'Crown', 'Baseboard'];
+const FIXTURE_LEVELS = ['Basic', 'Upgraded', 'Luxury'];
+const ELECTRICAL_LEVELS = ['Standard', 'Upgraded', 'Smart Home'];
+const HVAC_OPTIONS = ['Standard', 'High-Efficiency'];
+const DRIVEWAY_OPTIONS = ['Concrete', 'Asphalt', 'Gravel'];
+const WELL_SEPTIC_OPTIONS = ['Septic', 'Public'],
 
-// Room templates example
-const ROOM_TEMPLATES = {
-    bedroom: { name: 'Bedroom', size: 150, cost: 12000 },
-    restroom: { name: 'Restroom', size: 100, cost: 8000 },
-    kitchen: { name: 'Kitchen', size: 200, cost: 25000 }
-};
-
-// Step definitions and functionality
-const StepDefinitions = {
-    costEstimate: function(region, foundationType, sizes) {
-        // Cost estimation logic goes here
-        return sizes.map(size => size * 100); // Example pricing computation
-    }
-};
-
-// Main App component
 const App = () => {
-    const [totalCost, setTotalCost] = React.useState(0);
+    // State management
+    const [region, setRegion] = useState('');
+    const [foundationType, setFoundationType] = useState('');
+    const [framing, setFraming] = useState('');
+    const [roofing, setRoofing] = useState('');
+    const [exteriorSiding, setExteriorSiding] = useState('');
+    const [windows, setWindows] = useState('');
+    const [flooring, setFlooring] = useState('');
+    const [countertop, setCountertop] = useState('');
+    const [cabinets, setCabinets] = useState('');
+    const [appliances, setAppliances] = useState('');
+    const [paint, setPaint] = useState('');
+    const [molding, setMolding] = useState('');
+    const [fixtures, setFixtures] = useState('');
+    const [electrical, setElectrical] = useState('');
+    const [hvac, setHvac] = useState('');
+    const [driveway, setDriveway] = useState('');
+    const [wellSeptic, setWellSeptic] = useState('');
 
-    const calculateCost = () => {
-        // Simulate cost calculation
-        const cost = StepDefinitions.costEstimate(REGIONS[0], FOUNDATION_TYPES[0], [100, 150]);
-        setTotalCost(cost.reduce((a, b) => a + b, 0));
+    // Calculation functions (just as placeholders)
+    const calculateEstimate = () => {
+        // Implementation for estimate calculation
+        return 0; // Placeholder
     };
 
     return (
         <div>
-            <h1>BuildCost Pro App</h1>
-            <button onClick={calculateCost}>Calculate Cost</button>
-            <div>Total Estimated Cost: ${totalCost}</div>
+            <h1>BuildCost Pro Estimator</h1>
+            {/* UI Rendering logic */}
+            <form>
+                <label>Region:</label>
+                <select value={region} onChange={(e) => setRegion(e.target.value)}>
+                    {REGIONS.map((r) => (<option key={r} value={r}>{r}</option>))}
+                </select>
+                {/* Add more inputs for other constants */}
+                <button type="button" onClick={calculateEstimate}>Calculate Estimate</button>
+            </form>
+            <div>
+                Estimated Cost: ${calculateEstimate()}
+            </div>
         </div>
     );
 };
